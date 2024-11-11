@@ -59,8 +59,6 @@ def Take_query():
             speak("and you")
             continue
 
-
-
         elif "i am good" in query:
             ImGoodRes()
             continue

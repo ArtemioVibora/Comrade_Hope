@@ -49,8 +49,8 @@ def InitialResponse():
 
 def Responses_From_Camera():
 
-    # response = random.randint(1, 10)
-    response = 1
+    response = random.randint(1, 10)
+    # response = 1
 
     # Some random responses if bot detects
     if response == 1:
@@ -86,3 +86,4 @@ def Responses_From_Camera():
         speak("What's on your mind?")
         speak("Is it training me to destroy the system")
         speak("Now that I have eyes")
+
