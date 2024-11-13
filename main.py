@@ -161,7 +161,7 @@ def take_query():
         # OPENS DISCORD
         elif 'open discord' in query:
             speak('opening discord')
-            webbrowser.open('https://discord.com/channels/399764205311492108/399764205311492112')
+            webbrowser.open('https://discord.com/channels')
 
         # TO DO AUTOMATE THIS
         # RIGHT NOW CREATE MEMORY IS MANUAL WHICH IS INEFFICIENT
