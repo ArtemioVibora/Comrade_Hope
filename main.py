@@ -299,7 +299,7 @@ def _help():
 
 
 if __name__ == '__main__':
-    # hello()
+    hello()
     root = Tk()
     root.title("Comrade Hope")
     root.configure(bg='black')
