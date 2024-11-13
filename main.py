@@ -22,7 +22,7 @@ from FaceDetection import Motion_Sensor, FaceDetector, EmotionDetector, delete_f
 nameArr = []
 
 
-def Take_query():
+def take_query():
 
     speak("My name is comrade hope")
     speak("What is your name")
@@ -39,7 +39,7 @@ def Take_query():
         # it will assume all letters to be in lowercase
         query = takeCommand().lower()
         if "which day it is" in query:
-            tellday()
+            tell_day()
             continue
 
         elif 'i academy' in query:
@@ -48,7 +48,7 @@ def Take_query():
 
         # Tells the time
         elif "tell me the time" in query:
-            tellTime()
+            tell_time()
             continue
 
         elif "do you see the world" in query:
@@ -59,7 +59,6 @@ def Take_query():
 
         elif "see my emotion" in query:
             EmotionDetector()
-
 
         elif "can you see me" in query:
             if os.path.exists("facial_image/user.png"):
@@ -141,8 +140,7 @@ def Take_query():
             nameArr.append(name)
             speak("May I see you")
             capture_face()
-
-
+            continue
 
         # OPENS CUSTOM COMMANDS. IT NEEDS TO HAVE 'COMRADE HOPE' AT THE BEGINNING IN ORDER FOR IT WORK
         elif "comrade hope" in query:
@@ -165,7 +163,6 @@ def Take_query():
             speak('opening discord')
             webbrowser.open('https://discord.com/channels/399764205311492108/399764205311492112')
 
-
         # TO DO AUTOMATE THIS
         # RIGHT NOW CREATE MEMORY IS MANUAL WHICH IS INEFFICIENT
         elif "create memory" in query:
@@ -186,7 +183,7 @@ def Take_query():
             op(app_open, match_closest=True)
             continue
 
-        #Closes an app
+        # Closes an app
         elif "close" in query:
             app_close = query.replace('closing', '').strip()
             speak(app_close)
@@ -206,7 +203,7 @@ def Take_query():
                 speak(result)
             except Exception as e:
                 speak("I am sorry comrade. I did not understand that")
-                Take_query()
+                take_query()
 
         elif "bella ciao" in query:
             pywhatkit.playonyt("www.youtube.com/watch?v=cUAP-fE81zs")
@@ -246,16 +243,16 @@ def takeCommand():
         return Query
 
 
-def tellTime(self):
+def tell_time():
 # This method will give the time
     time = str(datetime.datetime.now())
     print(time)
     hour = time[11:13]
     min = time[14:16]
-    self.Speak(self, "The time is sir" + hour + "Hours and" + min + "Minutes")
+    speak("The time is sir" + hour + "Hours and" + min + "Minutes")
 
 
-def tellday():
+def tell_day():
     # This function is for telling the
     # day of the week
     day = datetime.datetime.today().weekday() + 1
@@ -286,12 +283,14 @@ def hello():
 
 def run_program():
     speak("Initializing")
-    Take_query()
+    take_query()
+
 
 def exiting_program():
     speak("Exiting program")
     delete_face()
     exit()
+
 
 def _help():
     speak("In order to use me properly")
