@@ -40,6 +40,7 @@ def Take_query():
             tellDay()
             continue
 
+        # Tells the time
         elif "tell me the time" in query:
             tellTime()
             continue
@@ -297,16 +298,8 @@ if __name__ == '__main__':
     image_label.pack()
     root.geometry("2560x1440")
     Label(root, text="COMRADE HOPE", bg='white').pack()
-
-
     Button(root, text="Activate AI", height=2, width=15, command=run_program).pack()
     Button(root, text='How to use me', height=2, width=15, command=_help).pack()
     Button(root, text="Exit Program", height=2, width=15, command=exiting_program).pack()
 
-
-
     root.mainloop()
-
-
-
-

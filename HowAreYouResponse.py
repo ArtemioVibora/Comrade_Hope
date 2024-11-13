@@ -1,6 +1,7 @@
 from SpeakEngine import speak
 import random
 
+# TO DO: REFACTOR THIS
 def HowAreYouResponse():
     Bot_Response = random.randint(1, 5)
 
