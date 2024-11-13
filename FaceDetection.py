@@ -20,7 +20,7 @@ cam = cv2.VideoCapture(0)
 # It verifies if it is you in the camera based upon the image
 # Once pygame is installed TO DO: automate the image and automate the name
 
-
+# This function deletes a face when session ends
 def delete_face():
     #mikami acting ahh
     if os.path.exists("facial_image/user.png"):
@@ -28,7 +28,7 @@ def delete_face():
     else:
         print("No file exists")
 
-
+# This function captures a face
 def capture_face():
     result, image = cam.read()
     while True:
@@ -70,11 +70,10 @@ def FaceDetector(name):
             break
 
 
-
+# This function captures and analyzes emotion
 def EmotionDetector():
     ret, frame = cam.read()
 
-    # Changed from True to cam.IsOpened():
     while True:
         cv2.imshow("Hope Bot's eyes", frame)
 

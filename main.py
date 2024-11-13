@@ -40,6 +40,10 @@ def Take_query():
             tellDay()
             continue
 
+        elif 'i academy' in query:
+            speak("With pride I state I am from I academy")
+            pywhatkit.playonyt('https://www.youtube.com/watch?v=D5-cm5hhdaw')
+
         # Tells the time
         elif "tell me the time" in query:
             tellTime()
@@ -111,6 +115,7 @@ def Take_query():
         # this will exit and terminate the program
         elif "terminate session" in query:
             speak("Goodbye comrade, we will seize the means of production next time")
+            cv2.destroyAllWindows()
             break
 
         elif "play" in query:
@@ -208,6 +213,7 @@ def Take_query():
         else:
             speak("My language is limited as of the moment")
 
+
 # TO DO: Refract takeCommand
 def takeCommand():
     r = sr.Recognizer()
@@ -222,7 +228,7 @@ def takeCommand():
         try:
             print("Analyzing")
             #Query is basically a command
-            Query = r.recognize_google(audio, language='en-in')
+            Query = r.recognize_google(audio, language='en-us')
             print("You: ", Query)
 
         except Exception as e:
@@ -231,6 +237,7 @@ def takeCommand():
             return "None"
 
         return Query
+
 
 def tellTime(self):
 # This method will give the time
@@ -257,6 +264,7 @@ def tellDay():
         day_of_the_week = Day_dict[day]
         print(day_of_the_week)
         speak("The day is " + day_of_the_week)
+
 
 def Hello():
     # This function
@@ -292,13 +300,15 @@ if __name__ == '__main__':
     root = Tk()
     root.title("Comrade Hope")
     root.configure(bg='white')
-    root.attributes('-fullscreen', True)
+    # root.attributes('-fullscreen', True)
+    icon = PhotoImage(file='image_tkinter/icon.png')
+    root.iconphoto(False, icon)
     image = PhotoImage(file="Image_tkinter/EyesOfHopeBot.png")
     image_label = Label(root, image=image)
     image_label.pack()
     root.geometry("2560x1440")
-    Label(root, text="COMRADE HOPE", bg='white').pack()
-    Button(root, text="Activate AI", height=2, width=15, command=run_program).pack()
+    Label(root, text="COMRADE HOPE", font=('Arial', 15, 'bold'), bg='white').pack()
+    Button(root, text="Activate AI", font=('Arial', 15, 'bold'), height=2, width=15, command=run_program).pack()
     Button(root, text='How to use me', height=2, width=15, command=_help).pack()
     Button(root, text="Exit Program", height=2, width=15, command=exiting_program).pack()
 
