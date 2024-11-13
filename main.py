@@ -23,6 +23,7 @@ from FaceDetection import Motion_Sensor, FaceDetector, EmotionDetector, delete_f
 
 nameArr = []
 
+
 def Take_query():
 
     while (True):
@@ -37,7 +38,7 @@ def Take_query():
         # it will assume all letters to be in lowercase
         query = takeCommand().lower()
         if "which day it is" in query:
-            tellDay()
+            tellday()
             continue
 
         elif 'i academy' in query:
@@ -248,7 +249,7 @@ def tellTime(self):
     self.Speak(self, "The time is sir" + hour + "Hours and" + min + "Minutes")
 
 
-def tellDay():
+def tellday():
     # This function is for telling the
     # day of the week
     day = datetime.datetime.today().weekday() + 1
@@ -266,7 +267,7 @@ def tellDay():
         speak("The day is " + day_of_the_week)
 
 
-def Hello():
+def hello():
     # This function
     # is called it will say hello and then
     # take query
@@ -296,7 +297,7 @@ def _help():
 
 
 if __name__ == '__main__':
-    # Hello()
+    # hello()
     root = Tk()
     root.title("Comrade Hope")
     root.configure(bg='white')
