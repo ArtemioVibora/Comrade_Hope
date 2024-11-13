@@ -1,9 +1,13 @@
+import cv2
 import speech_recognition as sr
 import pywhatkit
 import datetime
 import wikipedia
 import webbrowser
 import time
+import os
+from tkinter import *
+
 
 # Custom Functions
 from AppOpener import open as op
@@ -14,13 +18,12 @@ from HowAreYouResponse import HowAreYouResponse
 from SpeakEngine import speak
 # Randomized Responses in Responses.py. This is in order to refractor
 from Responses import ImGoodRes, InitialResponse
-from FaceDetection import Motion_Sensor, FaceDetector, EmotionDetector
+from FaceDetection import Motion_Sensor, FaceDetector, EmotionDetector, delete_face, capture_face
 
+
+nameArr = []
 
 def Take_query():
-    # calling the Hello function for
-    # making it more interactive
-    Hello()
 
     while (True):
 
@@ -52,7 +55,13 @@ def Take_query():
 
 
         elif "can you see me" in query:
-            FaceDetector()
+            if os.path.exists("facial_image/user.png"):
+                FaceDetector(nameArr[-1])
+            else:
+                speak("please introduce yourself first")
+
+        elif "destroy windows" in query:
+            cv2.destroyAllWindows()
 
         elif "how are you" in query:
             HowAreYouResponse()
@@ -99,9 +108,9 @@ def Take_query():
             continue
 
         # this will exit and terminate the program
-        elif "terminate" in query:
+        elif "terminate session" in query:
             speak("Goodbye comrade, we will seize the means of production next time")
-            exit()
+            break
 
         elif "play" in query:
             song = query.replace('play', '')
@@ -114,6 +123,14 @@ def Take_query():
             speak(inquiry)
             pywhatkit.search(inquiry)
             continue
+
+        elif "my name is" in query:
+            name = query.replace('my name is', '')
+            speak(f"Hello {name}")
+            nameArr.append(name)
+            speak("May I see you")
+            capture_face()
+
 
 
         # OPENS CUSTOM COMMANDS. IT NEEDS TO HAVE 'COMRADE HOPE' AT THE BEGINNING IN ORDER FOR IT WORK
@@ -244,7 +261,7 @@ def Hello():
     # This function
     # is called it will say hello and then
     # take query
-    speak("hello comrade Amado. I am going to share the means of production with you")
+    speak("hello comrade. I am going to share the means of production with you")
     InitialResponse()
     time.sleep(1)
     speak("Before I begin")
@@ -254,9 +271,42 @@ def Hello():
     speak("Therefore speak english when giving commands")
 
 
-if __name__ == '__main__':
-    # main method for executing
-    # the functions
+def run_program():
+    speak("Initializing")
     Take_query()
+
+def exiting_program():
+    speak("Exiting program")
+    delete_face()
+    exit()
+
+def _help():
+    speak("In order to use me properly")
+    speak("Stare into my eye")
+    speak("And speak")
+
+
+if __name__ == '__main__':
+    # Hello()
+    root = Tk()
+    root.title("Comrade Hope")
+    root.configure(bg='white')
+    root.attributes('-fullscreen', True)
+    image = PhotoImage(file="Image_tkinter/EyesOfHopeBot.png")
+    image_label = Label(root, image=image)
+    image_label.pack()
+    root.geometry("2560x1440")
+    Label(root, text="COMRADE HOPE", bg='white').pack()
+
+
+    Button(root, text="Activate AI", height=2, width=15, command=run_program).pack()
+    Button(root, text='How to use me', height=2, width=15, command=_help).pack()
+    Button(root, text="Exit Program", height=2, width=15, command=exiting_program).pack()
+
+
+
+    root.mainloop()
+
+
 
 

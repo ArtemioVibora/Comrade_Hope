@@ -1,6 +1,8 @@
 import cv2
 import webbrowser
 from deepface import DeepFace
+import os
+import time
 # import matplotlib.pyplot as plt
 # import face_recognition
 # import numpy as np
@@ -13,19 +15,41 @@ from Responses import Responses_From_Camera
 # Camera set to 0 if there is a built-in webcam already
 # for example using a laptop
 cam = cv2.VideoCapture(0)
+
 # Here is where the image is stored
 # It verifies if it is you in the camera based upon the image
 # Once pygame is installed TO DO: automate the image and automate the name
-reference_img = cv2.imread("me.jpeg")
-name = 'Amado'
+
+
+def delete_face():
+    #mikami acting ahh
+    if os.path.exists("facial_image/user.png"):
+        os.remove("facial_image/user.png")
+    else:
+        print("No file exists")
+
+
+def capture_face():
+    result, image = cam.read()
+    while True:
+        try:
+            cv2.imshow('User', image)
+            cv2.imwrite("facial_image/user.png", image)
+            cv2.waitKey(5)
+            break
+        except Exception as e:
+            speak("I cannot see the person in front of me")
+            speak("Please try again")
+            continue
 
 
 # This function detects a face and then matches with a reference image
 # NOTE: YOU STILL HAVE TO SAVE AN IMAGE INSIDE HOPE BOT
-
-def FaceDetector():
+def FaceDetector(name):
 
     ret, frame = cam.read()
+    reference_img = cv2.imread("facial_image/user.png")
+    cv2.imshow("User", reference_img)
 
     while True:
         try:
@@ -37,11 +61,15 @@ def FaceDetector():
                 break
             else:
                 speak("I cannot see you")
+                speak("Please make sure to introduce yourself first")
                 break
         except Exception as e:
             speak("I cannot")
             speak("There is something wrong with my programming")
+            speak("Please make sure to introduce yourself first")
             break
+
+
 
 def EmotionDetector():
     ret, frame = cam.read()
@@ -49,6 +77,7 @@ def EmotionDetector():
     # Changed from True to cam.IsOpened():
     while True:
         cv2.imshow("Hope Bot's eyes", frame)
+
         try:
             #How to turn result into input
             # DONE!
@@ -150,7 +179,7 @@ def Motion_Sensor():
             x, y, w, h = cv2.boundingRect(c)
             cv2.rectangle(frame1, (x, y), (x+h, x+w), (0, 255, 0), 2)
             # This ensures that the vision is set properly
-            # Responses_From_Camera()
+            Responses_From_Camera()
 
         if cv2.waitKey(1) == ord('q'):
             speak("Closing my eyes")
