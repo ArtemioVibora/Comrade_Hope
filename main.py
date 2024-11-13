@@ -4,7 +4,6 @@ import pywhatkit
 import datetime
 import wikipedia
 import webbrowser
-import time
 import os
 from tkinter import *
 
@@ -13,11 +12,10 @@ from tkinter import *
 from AppOpener import open as op
 from AppOpener import close as cl
 # Refract this below to Response
-from FeelDownResponse import FeelDownRes
-from HowAreYouResponse import HowAreYouResponse
+
 from SpeakEngine import speak
 # Randomized Responses in Responses.py. This is in order to refractor
-from Responses import ImGoodRes, InitialResponse
+from Responses import ImGoodRes, InitialResponse, FeelDownRes, HowAreYouResponse
 from FaceDetection import Motion_Sensor, FaceDetector, EmotionDetector, delete_face, capture_face
 
 
@@ -25,6 +23,9 @@ nameArr = []
 
 
 def Take_query():
+
+    speak("My name is comrade hope")
+    speak("What is your name")
 
     while (True):
 
@@ -67,6 +68,7 @@ def Take_query():
                 speak("please introduce yourself first")
 
         elif "destroy windows" in query:
+            speak("Cleaning your screen")
             cv2.destroyAllWindows()
 
         elif "how are you" in query:
@@ -102,10 +104,12 @@ def Take_query():
             ImGoodRes()
             continue
 
-        elif 'hello' in query:
+        elif 'hello comrade hope' in query:
+            speak("Hello")
             speak("What can I do for you today")
 
-        elif 'hi' in query:
+        elif 'hi comrade hope' in query:
+            speak("Hello")
             speak("what can I do for you today")
 
         elif "i feel down today" in query:
@@ -174,6 +178,7 @@ def Take_query():
             speak("A new memory has been created")
             d.close()
 
+
         #Opens an app.
         elif "open" in query:
             app_open = query.replace('opening', '').strip()
@@ -210,6 +215,7 @@ def Take_query():
         elif "who are you" in query:
             # This can be changed
             speak("I am comrade Hope. Your desktop comrade")
+            speak("Made by I academy")
 
         else:
             speak("My language is limited as of the moment")
@@ -273,11 +279,8 @@ def hello():
     # take query
     speak("hello comrade. I am going to share the means of production with you")
     InitialResponse()
-    time.sleep(1)
     speak("Before I begin")
-    time.sleep(1)
     speak("I would like to remind you that my language is still limited")
-    time.sleep(1)
     speak("Therefore speak english when giving commands")
 
 
@@ -300,17 +303,17 @@ if __name__ == '__main__':
     # hello()
     root = Tk()
     root.title("Comrade Hope")
-    root.configure(bg='white')
+    root.configure(bg='black')
     # root.attributes('-fullscreen', True)
     icon = PhotoImage(file='image_tkinter/icon.png')
     root.iconphoto(False, icon)
-    image = PhotoImage(file="Image_tkinter/EyesOfHopeBot.png")
-    image_label = Label(root, image=image)
+    image = PhotoImage(file="Image_tkinter/ComradeHopeFinal.png")
+    image_label = Label(root, image=image, bd=0)
     image_label.pack()
     root.geometry("2560x1440")
-    Label(root, text="COMRADE HOPE", font=('Arial', 15, 'bold'), bg='white').pack()
+    # Label(root, fg='white', text="COMRADE HOPE", font=('Arial', 15, 'bold', 'underline'), bg='black', bd=0, highlightthickness=0).pack()
     Button(root, text="Activate AI", font=('Arial', 15, 'bold'), height=2, width=15, command=run_program).pack()
-    Button(root, text='How to use me', height=2, width=15, command=_help).pack()
-    Button(root, text="Exit Program", height=2, width=15, command=exiting_program).pack()
+    Button(root, text='How to use me', font=('Arial', 10, 'bold'), height=2, width=15, command=_help).pack()
+    Button(root, text="Exit Program", font=('Arial', 10, 'bold'), height=2, width=15, command=exiting_program).pack()
 
     root.mainloop()

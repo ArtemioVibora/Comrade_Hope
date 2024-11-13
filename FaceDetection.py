@@ -2,12 +2,9 @@ import cv2
 import webbrowser
 from deepface import DeepFace
 import os
-import time
 # import matplotlib.pyplot as plt
 # import face_recognition
 # import numpy as np
-
-
 from SpeakEngine import speak
 from Responses import Responses_From_Camera
 
