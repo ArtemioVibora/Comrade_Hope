@@ -18,10 +18,10 @@ from SpeakEngine import speak
 from Responses import ImGoodRes, InitialResponse, FeelDownRes, HowAreYouResponse
 from FaceDetection import Motion_Sensor, FaceDetector, EmotionDetector, delete_face, capture_face
 
-
+# Array which contains the name or names of the user or users
 nameArr = []
 
-
+# Queries
 def take_query():
 
     speak("My name is comrade hope")
@@ -122,6 +122,7 @@ def take_query():
             cv2.destroyAllWindows()
             break
 
+        # Automatically plays any song
         elif "play" in query:
             song = query.replace('play', '')
             speak('playing' + song)
@@ -249,7 +250,7 @@ def tell_time():
     print(time)
     hour = time[11:13]
     min = time[14:16]
-    speak("The time is sir" + hour + "Hours and" + min + "Minutes")
+    speak("The time is " + hour + "Hours and" + min + "Minutes")
 
 
 def tell_day():
