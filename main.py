@@ -203,7 +203,7 @@ def take_query():
                 speak(result)
             except Exception as e:
                 speak("I am sorry comrade. I did not understand that")
-                take_query()
+                continue
 
         elif "bella ciao" in query:
             pywhatkit.playonyt("www.youtube.com/watch?v=cUAP-fE81zs")
@@ -310,10 +310,7 @@ if __name__ == '__main__':
     image_label = Label(root, image=image, bd=0)
     image_label.pack()
     root.geometry("2560x1440")
-    Label(root, fg='white', text="beta"
-                                 ""
-                                 ""
-                                 "", font=('Arial', 10), bg='black', bd=0, highlightthickness=0).pack(side=BOTTOM)
+    Label(root, fg='white', text="beta", font=('Arial', 10), bg='black', bd=0, highlightthickness=0).pack(side=BOTTOM)
     Button(root, text="Activate AI", font=('Arial', 15, 'bold'), height=2, width=15, command=run_program).pack()
     Button(root, text='How to use me', font=('Arial', 10, 'bold'), height=2, width=15, command=_help).pack()
     Button(root, text="Exit Program", font=('Arial', 10, 'bold'), height=2, width=15, command=exiting_program).pack()
