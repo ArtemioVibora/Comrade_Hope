@@ -47,6 +47,7 @@ def FaceDetector(name):
     ret, frame = cam.read()
     reference_img = cv2.imread("facial_image/user.png")
     cv2.imshow("User", reference_img)
+    cv2.imshow("Person in front of me", frame)
 
     while True:
         try:

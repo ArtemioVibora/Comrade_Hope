@@ -119,6 +119,7 @@ def FeelDownRes():
     elif response == 10:
         speak("What's on your mind?")
 
+
 def HowAreYouResponse():
     Bot_Response = random.randint(1, 5)
 
